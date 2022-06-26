@@ -151,7 +151,7 @@ def history(user_id):
 
     conn = mysql.connect()
     cursor = conn.cursor()
-    test = cursor.execute("SELECT * FROM prediction_histories WHERE user_id = " + user_id + "LIMIT 7")
+    test = cursor.execute("SELECT * FROM prediction_histories WHERE user_id = " + user_id + " LIMIT 7")
 
     if test:
         data = cursor.fetchall()
