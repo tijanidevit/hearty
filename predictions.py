@@ -131,7 +131,12 @@ def fullHistory(user_id):
             'data': result,
             'status': 200
         })
-    return 'false'
+    return jsonify({
+            'success': 'true',
+            'message': 'Previous Predictions Fetch Successfully',
+            'data': [],
+            'status': 200
+        })
 
 
 @predictions_bp.route('history/<user_id>', methods=['GET'])
@@ -171,7 +176,12 @@ def history(user_id):
             'data': result,
             'status': 200
         })
-    return 'false'
+    return jsonify({
+            'success': 'true',
+            'message': 'Previous Predictions Fetch Successfully',
+            'data': [],
+            'status': 200
+        })
 
 
 def savePredictHistory(user_id, disease, status):
