@@ -95,7 +95,7 @@ def prediction(user_id):
 
 
 @predictions_bp.route('/<user_id>', methods=['GET'])
-def history(user_id):
+def fullHistory(user_id):
     if not user_id or user_id == '':
         return (jsonify({
             'success': 'false',
