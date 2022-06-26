@@ -94,6 +94,46 @@ def prediction(user_id):
         
 
 
+@predictions_bp.route('/<user_id>', methods=['GET'])
+def history(user_id):
+    if not user_id or user_id == '':
+        return (jsonify({
+            'success': 'false',
+            'message': 'User ID is required',
+            'status': 200
+        }))
+    if checkUser(user_id) < 1:
+        return (jsonify({
+            'success': 'false',
+            'message': 'User not found',
+            'status': 200
+        }))
+
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    test = cursor.execute("SELECT * FROM prediction_histories WHERE user_id = " + user_id + "LIMIT 7")
+
+    if test:
+        data = cursor.fetchall()
+
+        result = []
+        for hist in data:
+            result.append({
+                'id': hist[0],
+                'user_id': hist[1],
+                'keyword': hist[2],
+                'status': hist[3],
+                'created_at': hist[4],
+            })
+        return jsonify({
+            'success': 'true',
+            'message': 'Previous Predictions Fetch Successfully',
+            'data': result,
+            'status': 200
+        })
+    return 'false'
+
+
 @predictions_bp.route('history/<user_id>', methods=['GET'])
 def history(user_id):
     if not user_id or user_id == '':
@@ -111,7 +151,7 @@ def history(user_id):
 
     conn = mysql.connect()
     cursor = conn.cursor()
-    test = cursor.execute("SELECT * FROM prediction_histories WHERE user_id = " + user_id)
+    test = cursor.execute("SELECT * FROM prediction_histories WHERE user_id = " + user_id + "LIMIT 7")
 
     if test:
         data = cursor.fetchall()
