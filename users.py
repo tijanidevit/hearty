@@ -127,7 +127,7 @@ def updateAction():
             }))
         
         try:
-            user_id = str(user['id'])
+            user_id = (user['id'])
             updateProfile(age, gender, user_id)
             return (jsonify({
                 'success': 'true',
@@ -137,9 +137,10 @@ def updateAction():
             }))
                 
         except:
+            print(sys.exc_info)
             return (jsonify({
                 'success': 'false',
-                'message': sys.exc_info(),
+                'message': 'Unable to update',
                 'status': 200
             }))
         # finally:
