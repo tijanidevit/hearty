@@ -160,8 +160,8 @@ def getUser(email):
             'id': user[0],
             'fullname': user[1],
             'email': user[2],
-            'gender': user[3],
-            'age': user[4],
+            'gender': user[4],
+            'age': user[3],
             'created_at': user[6],
         }
 
