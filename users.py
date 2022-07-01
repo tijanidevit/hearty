@@ -127,16 +127,21 @@ def updateAction():
             }))
         
         try:
-            if updateProfile(age, gender, user['id']):
-
-                return (jsonify({
-                    'success': 'true',
-                    'message': 'Profile Updated Successfully',
-                    'data': getUser(email),
-                    'status': 200
-                }))
+            updateProfile(age, gender, user['id']):
+            return (jsonify({
+                'success': 'true',
+                'message': 'Profile Updated Successfully',
+                'data': getUser(email),
+                'status': 200
+            }))
                 
         except:
+            return (jsonify({
+                'success': 'false',
+                'message': sys.exc_info,
+                'status': 200
+            }))
+        finally:
             return (jsonify({
                 'success': 'false',
                 'message': sys.exc_info,
