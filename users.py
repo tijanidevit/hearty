@@ -92,10 +92,24 @@ def loginAction():
 def updateAction():
     user_data = request.get_json()
 
-    if not user_data['email'] or not user_data['age'] or not user_data['gender']:
+    if not user_data['email']:
         return (jsonify({
             'success': 'false',
-            'message': 'Please enter all the fields',
+            'message': 'Please enter all the email address',
+            'status': 200
+        }))
+
+    if not user_data['age']:
+        return (jsonify({
+            'success': 'false',
+            'message': 'Please enter age',
+            'status': 200
+        }))
+
+    if not user_data['gender']:
+        return (jsonify({
+            'success': 'false',
+            'message': 'Please select gender',
             'status': 200
         }))
     else:
