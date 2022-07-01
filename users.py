@@ -181,7 +181,7 @@ def login(email, password):
 def updateProfile(age, gender, id):
     conn = mysql.connect()
     cursor = conn.cursor()
-    test = cursor.execute("UPDATE users SET age = '" + age + " ', gender =  '" + gender + "' WHERE id = '" + id + "' ")
+    test = cursor.execute("UPDATE users SET age = '" + age + " ', gender =  '" + gender + "' WHERE id = '" + str(id) + "' ")
     if test:
         conn.commit()
     return test
