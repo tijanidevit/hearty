@@ -127,7 +127,7 @@ def updateAction():
             }))
         
         try:
-            updateProfile(age, gender, user['id']):
+            updateProfile(age, gender, user['id'])
             return (jsonify({
                 'success': 'true',
                 'message': 'Profile Updated Successfully',
