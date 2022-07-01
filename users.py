@@ -125,24 +125,23 @@ def updateAction():
                 'message': 'Email not found',
                 'status': 200
             }))
-
-        print (user)
-        
-        # user_id = (user['id'])
-        if 'true':
-            return (jsonify({
-                'success': 'true',
-                'message': 'Profile Updated Successfully',
-                'data': user,
-                'status': 200
-            }))
+            
         else:
-            print(sys.exc_info())
-            return (jsonify({
-                'success': 'false',
-                'message': 'Unable to update',
-                'status': 200
-            }))
+            user_id = (user['id'])
+            if updateProfile(age, gender, user_id):
+                return (jsonify({
+                    'success': 'true',
+                    'message': 'Profile Updated Successfully',
+                    'data': getUser(email),
+                    'status': 200
+                }))
+            else:
+                print(sys.exc_info())
+                return (jsonify({
+                    'success': 'false',
+                    'message': 'Unable to update',
+                    'status': 200
+                }))
 
 
 
