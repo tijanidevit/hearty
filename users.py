@@ -1,3 +1,4 @@
+import sys
 from flask import Blueprint, Flask, jsonify
 from flaskext.mysql import MySQL
 from config import Config
@@ -125,18 +126,20 @@ def updateAction():
                 'status': 200
             }))
         
-        if updateProfile(age, gender, user['id']):
+        try:
+            if updateProfile(age, gender, user['id']):
 
-            return (jsonify({
-                'success': 'true',
-                'message': 'Profile Updated Successfully',
-                'data': getUser(email),
-                'status': 200
-            }))
-        else:
+                return (jsonify({
+                    'success': 'true',
+                    'message': 'Profile Updated Successfully',
+                    'data': getUser(email),
+                    'status': 200
+                }))
+                
+        except:
             return (jsonify({
                 'success': 'false',
-                'message': 'Error Updating Profile',
+                'message': sys.exc_info(),
                 'status': 200
             }))
 
