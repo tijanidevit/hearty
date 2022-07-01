@@ -127,7 +127,8 @@ def updateAction():
             }))
         
         try:
-            updateProfile(age, gender, user['id'])
+            user_id = str(user['id'])
+            updateProfile(age, gender, user_id)
             return (jsonify({
                 'success': 'true',
                 'message': 'Profile Updated Successfully',
@@ -187,7 +188,7 @@ def login(email, password):
 def updateProfile(age, gender, id):
     conn = mysql.connect()
     cursor = conn.cursor()
-    test = cursor.execute("UPDATE users SET age = '" + age + " ', gender =  '" + gender + "' WHERE id = '" + str(id) + "' ")
+    test = cursor.execute("UPDATE users SET age = '" + age + " ', gender =  '" + gender + "' WHERE id = '" + id + "' ")
     if test:
         conn.commit()
     return test
