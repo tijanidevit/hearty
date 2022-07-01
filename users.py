@@ -96,7 +96,7 @@ def updateAction():
     if not user_data['email']:
         return (jsonify({
             'success': 'false',
-            'message': 'Please enter all the email address',
+            'message': 'Please enter the email address',
             'status': 200
         }))
 
