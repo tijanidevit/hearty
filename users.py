@@ -139,7 +139,7 @@ def updateAction():
         except:
             return (jsonify({
                 'success': 'false',
-                'message': sys.exc_info(),
+                'message': sys.exc_info,
                 'status': 200
             }))
 
