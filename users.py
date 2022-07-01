@@ -137,7 +137,7 @@ def updateAction():
             }))
                 
         except:
-            print(sys.exc_info)
+            print(sys.exc_info())
             return (jsonify({
                 'success': 'false',
                 'message': 'Unable to update',
