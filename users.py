@@ -125,6 +125,8 @@ def updateAction():
                 'message': 'Email not found',
                 'status': 200
             }))
+
+        print (user)
         
         user_id = (user['id'])
         if updateProfile(age, gender, user_id):
@@ -157,7 +159,6 @@ def getUser(email):
     test = cursor.execute("SELECT * FROM users WHERE email = '" + email + "'")
     if test:
         user = cursor.fetchone()
-        print(type(user))
         result = {
             'id': user[0],
             'fullname': user[1],
