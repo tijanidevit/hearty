@@ -128,12 +128,12 @@ def updateAction():
 
         print (user)
         
-        user_id = (user['id'])
-        if updateProfile(age, gender, user_id):
+        # user_id = (user['id'])
+        if 'true':
             return (jsonify({
                 'success': 'true',
                 'message': 'Profile Updated Successfully',
-                'data': getUser(email),
+                'data': user,
                 'status': 200
             }))
         else:
