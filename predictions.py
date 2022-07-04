@@ -48,7 +48,7 @@ def predictTest():
 
 @predictions_bp.route('/<user_id>', methods=['POST'])
 def prediction(user_id):
-    form_data = request.form
+    form_data = request.get_json()
     data = [form_data['age'], form_data['sex'], form_data['cp'], form_data['trestbps'], form_data['chol'],
               form_data['fbs'], form_data['restecg'], form_data['thalach'], form_data['exang'], 
               form_data['oldpeak'], form_data['slope'], form_data['ca'], form_data['thal']]
