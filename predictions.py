@@ -49,10 +49,7 @@ def predictTest():
 @predictions_bp.route('/<user_id>', methods=['POST'])
 def prediction(user_id):
     form_data = request.get_json()
-    data = [form_data['age'], form_data['sex'], form_data['cp'], form_data['trestbps'], form_data['chol'],
-              form_data['fbs'], form_data['restecg'], form_data['thalach'], form_data['exang'], 
-              form_data['oldpeak'], form_data['slope'], form_data['ca'], form_data['thal']]
-    
+
     if not user_id or user_id == '':
         return (jsonify({
             'success': 'false',
@@ -65,6 +62,14 @@ def prediction(user_id):
             'message': 'User not found',
             'status': 200
         }))
+
+    user = getUser(user_id)
+
+    data = [user['age'], user['sex'], form_data['cp'], form_data['trestbps'], form_data['chol'],
+              form_data['fbs'], form_data['restecg'], form_data['thalach'], form_data['exang'], 
+              form_data['oldpeak'], form_data['slope'], form_data['ca'], form_data['thal']]
+    
+   
 
     filename = 'heart_model.pkl'
     model_reloaded = pickle.load(open(filename, 'rb'))
@@ -201,3 +206,21 @@ def checkUser(user_id):
     cursor = conn.cursor()
     test = cursor.execute("SELECT id FROM users WHERE id = '" + user_id + "'")
     return test
+
+def getUser(id):
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    test = cursor.execute("SELECT * FROM users WHERE id = '" + id + "'")
+    if test:
+        user = cursor.fetchone()
+        result = {
+            'id': user[0],
+            'fullname': user[1],
+            'email': user[2],
+            'gender': user[4],
+            'age': user[3],
+            'created_at': user[6],
+        }
+
+        return result
+    return 'false'
