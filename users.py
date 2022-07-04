@@ -139,7 +139,7 @@ def updateAction():
                 print(sys.exc_info())
                 return (jsonify({
                     'success': 'false',
-                    'message': 'Unable to update',
+                    'message': 'Nothing to update',
                     'status': 200
                 }))
 
