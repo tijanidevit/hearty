@@ -44,7 +44,7 @@ def createUsersTable():
         cursor.execute("DROP TABLE users")
         conn.commit()
         test = cursor.execute(
-            "CREATE TABLE users("
+            "CREATE TABLE IF NOT EXISTS users("
             "id int NOT NULL PRIMARY KEY AUTO_INCREMENT,"
             "fullname varchar(190),"
             "email varchar(190),"
@@ -63,7 +63,7 @@ def createPredictionHistoriesTable():
     cursor = conn.cursor()
     try:
         test = cursor.execute(
-            "CREATE TABLE prediction_histories("
+            "CREATE TABLE IF NOT EXISTS prediction_histories("
             "id int NOT NULL PRIMARY KEY AUTO_INCREMENT,"
             "user_id int,"
             "disease varchar(190),"
@@ -80,7 +80,7 @@ def createDoctorTable():
     cursor = conn.cursor()
     try:
         test = cursor.execute(
-            "CREATE TABLE doctors("
+            "CREATE TABLE IF NOT EXISTS doctors("
             "id int NOT NULL PRIMARY KEY AUTO_INCREMENT,"
             "disease_id INT,"
             "fullname varchar(190),"
@@ -100,7 +100,7 @@ def createDiseaseTable():
     cursor = conn.cursor()
     try:
         test = cursor.execute(
-            "CREATE TABLE diseases("
+            "CREATE TABLE IF NOT EXISTS diseases("
             "id int NOT NULL PRIMARY KEY AUTO_INCREMENT,"
             "disease varchar(190),"
             "about text,"
@@ -117,7 +117,7 @@ def createAdminTable():
     cursor = conn.cursor()
     try:
         test = cursor.execute(
-            "CREATE TABLE admin("
+            "CREATE TABLE IF NOT EXISTS admin("
             "id int NOT NULL PRIMARY KEY AUTO_INCREMENT,"
             "username varchar(190),"
             "password text,"
