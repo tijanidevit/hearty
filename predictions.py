@@ -65,7 +65,7 @@ def prediction(user_id):
 
     user = getUser(user_id)
 
-    data = [user['age'], user['sex'], form_data['cp'], form_data['trestbps'], form_data['chol'],
+    data = [user['age'], user['gender'], form_data['cp'], form_data['trestbps'], form_data['chol'],
               form_data['fbs'], form_data['restecg'], form_data['thalach'], form_data['exang'], 
               form_data['oldpeak'], form_data['slope'], form_data['ca'], form_data['thal']]
     
